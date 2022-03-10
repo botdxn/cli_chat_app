@@ -1,0 +1,16 @@
+name: flake8-check
+
+on: [push]
+
+jobs:
+    flake8-check:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-python@v2
+              with:
+                python-version: '3.9'
+            - name: install flake8 package
+               run: pip install flake8 pycodestyle
+            - name: run flake8 package
+               run: flake8
