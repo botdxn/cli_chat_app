@@ -20,7 +20,7 @@ class Client:
                 if message:
                     sys.stdout.write(f"{message.decode()}\n")
                 else:
-                    conn.close()
+                    connection.close()
                     raise "No message received or error while receiving message"
                     break
 
