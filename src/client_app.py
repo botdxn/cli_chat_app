@@ -28,7 +28,6 @@ class Client:
                 sys.stdout.write(f"{e}\n")
                 break
 
-
     def client_handler(self) -> None:
         # Initialization of client socket
         # Trying to connect with host server
@@ -52,6 +51,7 @@ class Client:
         except Exception as e:
             sys.stdout.write(f"{e}\n")
             sock.close()
+
 
 if __name__ == "__main__":
     t = Client("127.0.0.1", 12000)

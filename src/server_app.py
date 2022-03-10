@@ -30,7 +30,9 @@ class Server:
                 GLOB_CONNECTIONS.append(sock_conn)
 
                 # Start new thread (instance) for incoming connection
-                threading.Thread(target=self.conn_handler, args=[sock_conn, address]).start()
+                threading.Thread(
+                    target=self.conn_handler, args=[sock_conn, address]
+                ).start()
 
         # Handle errors
         except Exception as e:
@@ -51,8 +53,12 @@ class Server:
                 message = connection.recv(1024)
 
                 if message:
-                    sys.stdout.write(f"[{address[0]}:{address[1]}]: {message.decode()}\n")
-                    message_to_broadcast = f"Recv from [{address[0]}:{address[1]}]: {message.decode()}"
+                    sys.stdout.write(
+                        f"[{address[0]}:{address[1]}]: {message.decode()}\n"
+                    )
+                    message_to_broadcast = (
+                        f"Recv from [{address[0]}:{address[1]}]: {message.decode()}"
+                    )
 
                     self.broadcast_message(message_to_broadcast, connection)
 
@@ -72,7 +78,6 @@ class Server:
                 except Exception as e:
                     sys.stdout.write(f"{e}\n")
                     self.terminate_connection()
-
 
     def terminate_connection(self, connection: socket.socket) -> None:
         if connection in GLOB_CONNECTIONS:
